@@ -1,0 +1,49 @@
+#loginForm {
+    width: 60%;
+    margin: auto;
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+  }
+  #loginForm h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  .label {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    margin: 5px 0;
+  }
+  .user-input {
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: 0 0px 7px 0 rgba(0, 0, 0, 0.2);
+  }
+  #log-in {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: #333033;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 15px;
+    outline: none;
+    cursor: pointer;
+  }
+  #log-in:hover {
+    background-color: #ffda10;
+    color: #333033;
+  }
+  #loginForm span {
+    font-size: 17px;
+    margin-top: 16px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  
