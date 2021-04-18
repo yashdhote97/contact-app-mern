@@ -62,7 +62,11 @@ class ContactList extends Component {
         }
       });
     axios
-      .get("http://localhost:5000/contacts/")
+      .get("http://localhost:5000/contacts/",{
+        headers: {
+          'authorization': token,
+        },
+      })
       .then((res) => {
         this.setState({ contactArr: res.data });
         // alert("Contact Added");
@@ -77,8 +81,13 @@ class ContactList extends Component {
       });
   };
   componentDidMount() {
+    let token = JSON.parse(localStorage.getItem("token"));
     axios
-      .get("http://localhost:5000/contacts/")
+      .get("http://localhost:5000/contacts/",{
+        headers: {
+          'authorization': token,
+        },
+      })
       .then((res) => {
         this.setState({ contactArr: res.data });
       })
@@ -166,7 +175,6 @@ class ContactList extends Component {
             {contactArr?.map((contact) => (
               <Contact contact={contact} key={contact._id} />
             ))}
-            {/* <Contact name="Rachel" email="rachel@gmail.com" phone="93746312" address="adjaius adjo alijd" /> */}
           </div>
         </div>
       </div>
