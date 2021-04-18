@@ -7,31 +7,33 @@ let User = require("../models/User");
 //     res.send("This is the Secret page");
 // });
 
-router.route("/").get((req, res) => {
-
-  // let user = User.find({_id:res.user._id});
-    Contact.find()
+router.route("/").get(verifyToken, (req, res) => {
+  User.findById(res.user._id).then((user) =>{
+    console.log(user);
+    Contact.find({ userId: user.email })
       .then((contacts) => res.json(contacts))
-      .catch((err) => res.status(400).json("ERROR: " + err));
-});
-router.route("/add").post(verifyToken,(req, res) => {
-  console.log(res.user._id);
-  const { name, email, address } = req.body;
-  const userId = "batwayne@gmail.com";
-  const phone = Number(req.body.phone);
-
-  const newContact = new Contact({
-    name,
-    email,
-    address,
-    phone,
-    userId
+      .catch((err) => res.status(400).json("ERROR: " + err))
   });
-
-  newContact
-    .save()
-    .then(() => res.json("Contact Added!"))
-    .catch((err) => res.status(400).json("ERROR: " + err));
+});
+router.route("/add").post(verifyToken, (req, res) => {
+  User.findById(res.user._id).then((user) =>{
+    const { name, email, address } = req.body;
+    const userId = user.email;
+    const phone = Number(req.body.phone);
+  
+    const newContact = new Contact({
+      name,
+      email,
+      address,
+      phone,
+      userId,
+    });
+  
+    newContact
+      .save()
+      .then(() => res.json("Contact Added!"))
+      .catch((err) => res.status(400).json("ERROR: " + err));
+  });
 });
 
 router
@@ -47,7 +49,7 @@ router
       .catch((err) => res.status(400).json("Error: " + err));
   });
 
-router.route("/update/:id").post(verifyToken,(req, res) => {
+router.route("/update/:id").post(verifyToken, (req, res) => {
   Contact.findById(req.params.id)
     .then((contact) => {
       contact.name = req.body.name;
