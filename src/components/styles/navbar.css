@@ -1,0 +1,28 @@
+#nav{
+    display: flex;
+    position: fixed;
+    top:0;
+    width: 100%;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+    padding:8px;
+    background-color: #333033;
+}
+#options{
+    display: flex;
+}
+#register,#login{
+    border-radius: 7px;
+    padding: 15px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+#register:hover,#login:hover{
+    background-color: #FFDA10;
+    color:#333033;
+}
+#options a{
+    text-decoration: none;
+    color: white;
+}
